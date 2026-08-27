@@ -5,9 +5,6 @@ export type Project = {
   summary: string;
   description: string;
   year: string;
-  period: string;
-  role: string;
-  team: string;
   status: string;
   technologies: string[];
   image: string | null;
@@ -31,9 +28,6 @@ export const projects: Project[] = [
     description:
       "SoundMotion은 음악 탐색부터 재생까지 자연스럽게 이어지는 경험을 제공하는 음악 플레이어입니다. 앨범 아트와 음악 정보를 중심으로 콘텐츠에 몰입할 수 있도록 구성하고, 다양한 화면에서 편안하게 사용할 수 있는 반응형 인터페이스와 다크 테마를 적용했습니다.",
     year: "2026",
-    period: "[작업 기간 입력]",
-    role: "기획 · UI 디자인 · 프론트엔드 개발",
-    team: "개인 프로젝트",
     status: "개발 중",
     technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel"],
     image: "/projects/soundmotion-cover.png",
