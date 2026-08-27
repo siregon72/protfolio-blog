@@ -15,7 +15,7 @@ export const Header = () => {
           </Link>
           <Link
             href="/projects"
-            className="rounded-sm text-zinc-500 outline-none transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring dark:text-zinc-400"
+            className="rounded-sm outline-none transition-opacity hover:opacity-60 focus-visible:ring-2 focus-visible:ring-ring"
           >
             Projects
           </Link>

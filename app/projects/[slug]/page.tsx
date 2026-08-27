@@ -59,7 +59,10 @@ export default async function ProjectDetailPage({
         <div>
           <div className="flex items-center gap-3 text-sm text-zinc-500 dark:text-zinc-400">
             <span>{project.englishTitle}</span>
-            <span aria-hidden="true" className="size-1 rounded-full bg-zinc-300 dark:bg-zinc-700" />
+            <span
+              aria-hidden="true"
+              className="size-1 rounded-full bg-zinc-300 dark:bg-zinc-700"
+            />
             <span>{project.year}</span>
           </div>
           <h1 className="mt-5 text-5xl font-semibold tracking-[-0.055em] text-zinc-950 sm:text-7xl dark:text-zinc-50">
@@ -75,8 +78,8 @@ export default async function ProjectDetailPage({
       </header>
 
       <ProjectVisual
-        type={project.visual}
-        title={project.title}
+        image={project.image}
+        alt={project.imageAlt}
         className="mt-12 aspect-[16/9] rounded-[2rem] sm:mt-16 sm:rounded-[2.5rem]"
       />
 
@@ -86,49 +89,27 @@ export default async function ProjectDetailPage({
         <ProjectInfo icon={Clock3} label="담당 역할" value={project.role} />
       </section>
 
-      <div className="mt-20 grid gap-16 lg:grid-cols-[14rem_minmax(0,1fr)] lg:gap-24">
-        <aside>
-          <p className="text-xs font-medium tracking-[0.18em] text-zinc-500 uppercase dark:text-zinc-400">
-            Tech stack
-          </p>
-          <ul className="mt-5 flex flex-wrap gap-2 lg:flex-col lg:items-start">
-            {project.technologies.map((technology) => (
-              <li
-                key={technology}
-                className="rounded-full bg-zinc-100 px-3 py-1.5 text-sm text-zinc-700 dark:bg-zinc-900 dark:text-zinc-300"
-              >
-                {technology}
-              </li>
-            ))}
-          </ul>
-        </aside>
-
-        <div className="space-y-24">
-          <section aria-labelledby="highlights-heading">
-            <SectionLabel>Overview</SectionLabel>
-            <h2 id="highlights-heading" className="mt-4 text-3xl font-semibold tracking-tight">
-              프로젝트 한눈에 보기
-            </h2>
-            <dl className="mt-8 grid grid-cols-3 divide-x divide-zinc-200 rounded-2xl border border-zinc-200 py-6 dark:divide-zinc-800 dark:border-zinc-800">
-              {project.highlights.map((highlight) => (
-                <div key={highlight.label} className="px-3 text-center sm:px-6">
-                  <dt className="text-xs text-zinc-500 dark:text-zinc-400">{highlight.label}</dt>
-                  <dd className="mt-2 text-sm font-semibold sm:text-lg">{highlight.value}</dd>
-                </div>
-              ))}
-            </dl>
-          </section>
-
+      <div className="mt-20 space-y-24">
           <section aria-labelledby="contribution-heading">
             <SectionLabel>What I did</SectionLabel>
-            <h2 id="contribution-heading" className="mt-4 text-3xl font-semibold tracking-tight">
+            <h2
+              id="contribution-heading"
+              className="mt-4 text-3xl font-semibold tracking-tight"
+            >
               주요 기여
             </h2>
             <ul className="mt-8 space-y-4">
               {project.contributions.map((contribution) => (
-                <li key={contribution} className="flex gap-4 leading-7 text-zinc-700 dark:text-zinc-300">
+                <li
+                  key={contribution}
+                  className="flex gap-4 leading-7 text-zinc-700 dark:text-zinc-300"
+                >
                   <span className="mt-1.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-zinc-950 text-white dark:bg-zinc-100 dark:text-zinc-950">
-                    <Check aria-hidden="true" className="size-3" strokeWidth={3} />
+                    <Check
+                      aria-hidden="true"
+                      className="size-3"
+                      strokeWidth={3}
+                    />
                   </span>
                   {contribution}
                 </li>
@@ -142,7 +123,10 @@ export default async function ProjectDetailPage({
               <span className="flex size-10 items-center justify-center rounded-xl bg-zinc-100 dark:bg-zinc-900">
                 <Wrench aria-hidden="true" className="size-5" />
               </span>
-              <h2 id="troubleshooting-heading" className="text-3xl font-semibold tracking-tight">
+              <h2
+                id="troubleshooting-heading"
+                className="text-3xl font-semibold tracking-tight"
+              >
                 문제 해결 과정
               </h2>
             </div>
@@ -157,7 +141,9 @@ export default async function ProjectDetailPage({
                     <span className="font-mono text-sm text-zinc-400 dark:text-zinc-600">
                       {String(index + 1).padStart(2, "0")}
                     </span>
-                    <h3 className="text-xl font-semibold tracking-tight">{item.title}</h3>
+                    <h3 className="text-xl font-semibold tracking-tight">
+                      {item.title}
+                    </h3>
                   </div>
                   <dl className="mt-7 space-y-6 sm:ml-9">
                     <TroubleItem label="문제" text={item.problem} />
@@ -168,7 +154,6 @@ export default async function ProjectDetailPage({
               ))}
             </div>
           </section>
-        </div>
       </div>
 
       <footer className="mt-28 border-t border-zinc-200 pt-8 dark:border-zinc-800">
@@ -178,7 +163,9 @@ export default async function ProjectDetailPage({
         >
           <div>
             <p className="text-sm text-zinc-500 dark:text-zinc-400">Back to</p>
-            <p className="mt-1 text-2xl font-semibold tracking-tight">모든 프로젝트 보기</p>
+            <p className="mt-1 text-2xl font-semibold tracking-tight">
+              모든 프로젝트 보기
+            </p>
           </div>
           <ArrowLeft
             aria-hidden="true"
@@ -221,8 +208,12 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 function TroubleItem({ label, text }: { label: string; text: string }) {
   return (
     <div className="grid gap-2 sm:grid-cols-[3.5rem_1fr] sm:gap-4">
-      <dt className="text-sm font-semibold text-zinc-950 dark:text-zinc-100">{label}</dt>
-      <dd className="text-sm leading-7 text-zinc-600 dark:text-zinc-400">{text}</dd>
+      <dt className="text-sm font-semibold text-zinc-950 dark:text-zinc-100">
+        {label}
+      </dt>
+      <dd className="text-sm leading-7 text-zinc-600 dark:text-zinc-400">
+        {text}
+      </dd>
     </div>
   );
 }

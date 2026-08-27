@@ -3,7 +3,13 @@ import { ArrowUpRight } from "lucide-react";
 import type { Project } from "@/lib/projects";
 import { ProjectVisual } from "@/components/ProjectVisual";
 
-export function ProjectCard({ project, index }: { project: Project; index: number }) {
+export function ProjectCard({
+  project,
+  index,
+}: {
+  project: Project;
+  index: number;
+}) {
   return (
     <li>
       <Link
@@ -11,9 +17,9 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
         className="group grid gap-6 border-t border-zinc-200 py-8 outline-none sm:grid-cols-[minmax(0,1.15fr)_minmax(18rem,0.85fr)] sm:items-center sm:py-10 dark:border-zinc-800"
       >
         <ProjectVisual
-          type={project.visual}
-          title={project.title}
-          className="aspect-[16/10] rounded-3xl transition duration-500 group-hover:-translate-y-1 group-hover:shadow-xl group-focus-visible:-translate-y-1 group-focus-visible:ring-2 group-focus-visible:ring-zinc-900 group-focus-visible:ring-offset-4 dark:group-focus-visible:ring-zinc-100 dark:group-focus-visible:ring-offset-zinc-950"
+          image={project.image}
+          alt={project.imageAlt}
+          className="aspect-16/10 rounded-3xl transition duration-500 group-hover:-translate-y-1 group-hover:shadow-xl group-focus-visible:-translate-y-1 group-focus-visible:ring-2 group-focus-visible:ring-zinc-900 group-focus-visible:ring-offset-4 dark:group-focus-visible:ring-zinc-100 dark:group-focus-visible:ring-offset-zinc-950"
         />
 
         <div className="sm:px-3">
