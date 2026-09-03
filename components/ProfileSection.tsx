@@ -19,9 +19,9 @@ export default function ProfileSection() {
             안녕하세요,
             <br />
             <span className="bg-linear-to-r from-zinc-950 to-zinc-950/20 bg-clip-text text-transparent dark:from-white dark:to-white/20">
-              프론트엔드&nbsp;
+              프론트엔드 개발자&nbsp;
             </span>
-            개발자 최시훈입니다.
+            최시훈입니다.
           </h1>
           <p className="mt-4 max-w-3xl leading-7 ">
             UI/UX를 깊이 이해하고, 사용자 경험을 완성도 높은 웹으로 구현합니다.
