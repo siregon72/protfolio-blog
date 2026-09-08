@@ -1,10 +1,7 @@
 import Image from "next/image";
 
 const technologies = [
-  "/icons/flutter-original.svg",
   "/icons/react.svg",
-  "/icons/nextjs.svg",
-  "/icons/typescript.svg",
   "/icons/javascript.svg",
   "/icons/tailwindcss.svg",
   "/icons/cloudflare.svg",
