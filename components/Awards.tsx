@@ -1,14 +1,14 @@
 const awards = [
   {
     year: "2026",
-    event: "🥉경북 지역창업체험센터 청소년 창업 해커톤 대회",
-    award: "창의상",
+    event: "🥈사이버 가디언즈 CMX 대회",
+    award: "우수상",
     category: "교외 대회",
   },
   {
     year: "2026",
-    event: "🥈사이버 가디언즈 CMX 대회",
-    award: "우수상",
+    event: "🥉경북 지역창업체험센터 청소년 창업 해커톤 대회",
+    award: "창의상",
     category: "교외 대회",
   },
   {

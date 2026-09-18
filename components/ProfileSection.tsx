@@ -19,12 +19,13 @@ export default function ProfileSection() {
             안녕하세요,
             <br />
             <span className="bg-linear-to-r from-zinc-950 to-zinc-950/20 bg-clip-text text-transparent dark:from-white dark:to-white/20">
-              프론트엔드 개발자&nbsp;
+              리버스 엔지니어&nbsp;
             </span>
             최시훈입니다.
           </h1>
           <p className="mt-4 max-w-3xl leading-7 ">
-            UI/UX를 깊이 이해하고, 사용자 경험을 완성도 높은 웹으로 구현합니다.
+            코드의 동작 원리를 분석하고, 보이지 않는 구조를 이해하는 과정을
+            좋아하는 리버스 엔지니어링 개발자입니다.
           </p>
           <div className="mt-10">
             <div className="mt-3 flex items-center gap-2">
