@@ -31,6 +31,9 @@ export const metadata: Metadata = {
     title: "Portfolio",
     description: "개발자 포트폴리오",
   },
+  other: {
+    "darkreader-lock": "true",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

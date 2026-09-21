@@ -29,6 +29,12 @@ const awards = [
     award: "장려상",
     category: "교외 대회",
   },
+  {
+    year: "2026",
+    event: "🥉제23회 영천보현산별빛축제 청소년 AI 영상 공모전",
+    award: "장려상",
+    category: "교외 대회",
+  },
 ];
 
 const categories = ["교외 대회", "교내 대회"];
@@ -49,7 +55,7 @@ export function Awards() {
               {category}
             </h3>
             <ul
-              className="mt-4 max-h-80 space-y-4 overflow-y-auto"
+              className="mt-4 max-h-80 space-y-2 overflow-y-auto"
               aria-label={`${category} 수상 이력`}
             >
               {awards
@@ -57,9 +63,9 @@ export function Awards() {
                 .map((award) => (
                   <li
                     key={award.event}
-                    className="flex flex-col items-start gap-2 border-t border-zinc-100 pt-4 dark:border-zinc-800"
+                    className="flex items-center justify-between gap-3 border-t border-zinc-100 pt-3 dark:border-zinc-800"
                   >
-                    <div className="flex gap-3">
+                    <div className="flex min-w-0 gap-3">
                       <span className="shrink-0 text-sm font-medium text-zinc-500 dark:text-zinc-400">
                         {award.year}
                       </span>
@@ -67,7 +73,7 @@ export function Awards() {
                         {award.event}
                       </p>
                     </div>
-                    <span className="self-end rounded-full bg-zinc-100 px-3 py-1 text-sm font-medium text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300">
+                    <span className="shrink-0 rounded-full bg-zinc-100 px-3 py-1 text-sm font-medium text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300">
                       {award.award}
                     </span>
                   </li>

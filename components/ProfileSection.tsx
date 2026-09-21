@@ -24,8 +24,8 @@ export default function ProfileSection() {
             최시훈입니다.
           </h1>
           <p className="mt-4 max-w-3xl leading-7 ">
-            코드의 동작 원리를 분석하고, 보이지 않는 구조를 이해하는 과정을
-            좋아하는 리버스 엔지니어링 개발자입니다.
+            코드의 동작 원리를 분석하고, 보이지 않는 내부 구조를 이해하는 과정을
+            좋아하는 리버스 엔지니어입니다.
           </p>
           <div className="mt-10">
             <div className="mt-3 flex items-center gap-2">
