@@ -1,11 +1,12 @@
 import Image from "next/image";
 import { ImageIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export function ProjectVisual({
   image,
   alt,
   aspectRatio,
-  className = "",
+  className,
 }: {
   image: string | null;
   alt: string;
@@ -14,7 +15,10 @@ export function ProjectVisual({
 }) {
   return (
     <div
-      className={`relative overflow-hidden border border-zinc-200 bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 ${className}`}
+      className={cn(
+        "relative aspect-video overflow-hidden border border-zinc-200 bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900",
+        className,
+      )}
       style={aspectRatio ? { aspectRatio } : undefined}
     >
       {image ? (
@@ -22,7 +26,7 @@ export function ProjectVisual({
           src={image}
           alt={alt}
           fill
-          sizes="(min-width: 1280px) 1120px, (min-width: 640px) 75vw, 100vw"
+          sizes="(min-width: 1280px) 1200px, (min-width: 640px) calc(100vw - 80px), calc(100vw - 48px)"
           className="object-cover"
         />
       ) : (

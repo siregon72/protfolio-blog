@@ -10,21 +10,22 @@ export default function ProfileSection() {
             src="/profile/devprofile.jpeg"
             alt="프로필 사진"
             fill
-            priority
+            sizes="(min-width: 640px) 160px, 128px"
+            preload
             className="object-cover"
           />
         </div>
 
         <div>
-          <h1 className="text-5xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
+          <h1 className="text-3xl font-bold tracking-tight break-keep text-zinc-950 sm:text-5xl dark:text-zinc-50">
             안녕하세요,
             <br />
-            <span className="bg-linear-to-r from-zinc-950 to-zinc-950/20 bg-clip-text text-transparent dark:from-white dark:to-white/20">
+            <span className="inline-block bg-linear-to-r from-zinc-950 to-zinc-950/20 bg-clip-text text-transparent dark:from-white dark:to-white/20">
               리버스 엔지니어&nbsp;
             </span>
             최시훈입니다.
           </h1>
-          <p className="mt-4 max-w-3xl leading-7 ">
+          <p className="mt-4 max-w-3xl leading-7">
             코드의 동작 원리를 분석하고, 보이지 않는 내부 구조를 이해하는 과정을
             좋아하는 리버스 엔지니어입니다.
           </p>

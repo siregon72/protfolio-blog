@@ -1,0 +1,56 @@
+export type Technology = {
+  name: string;
+  icon?: string;
+  iconClassName?: string;
+  text?: string;
+};
+
+const technologyCatalog: Record<string, Technology> = {
+  assembly: { name: "Assembly", text: "ASM" },
+  c: { name: "C", icon: "/icons/c.svg" },
+  "next.js": { name: "Next.js", icon: "/icons/nextjs.svg" },
+  react: { name: "React", icon: "/icons/react.svg" },
+  typescript: { name: "TypeScript", icon: "/icons/typescript.svg" },
+  tailwindcss: { name: "Tailwind CSS", icon: "/icons/tailwindcss.svg" },
+  sveltekit: { name: "SvelteKit", icon: "/icons/svelte.svg" },
+  svelte: { name: "Svelte", icon: "/icons/svelte.svg" },
+  rust: { name: "Rust", icon: "/icons/rust.svg", iconClassName: "dark:invert" },
+  vercel: {
+    name: "Vercel",
+    icon: "/icons/vercel.svg",
+    iconClassName: "dark:invert",
+  },
+  cloudflare: { name: "Cloudflare", icon: "/icons/cloudflare.svg" },
+  python: { name: "Python", icon: "/icons/python-original.svg" },
+  flask: {
+    name: "Flask",
+    icon: "/icons/flask-original.svg",
+    iconClassName: "dark:invert",
+  },
+  supabase: { name: "Supabase", icon: "/icons/supabase.svg" },
+  sqlite: { name: "SQLite", icon: "/icons/sqlite.svg" },
+  java: { name: "Java", icon: "/icons/java.svg" },
+  javascript: { name: "JavaScript", icon: "/icons/javascript.svg" },
+  gradle: {
+    name: "Gradle",
+    icon: "/icons/gradle.svg",
+    iconClassName: "dark:brightness-0 dark:invert",
+  },
+  github: {
+    name: "GitHub",
+    icon: "/icons/github.svg",
+    iconClassName: "dark:invert",
+  },
+};
+
+export function getTechnology(name: string): Technology {
+  const key = name
+    .trim()
+    .replace(/\s+\d+(?:\.\d+)*$/, "")
+    .replace(/\s+/g, "")
+    .toLowerCase();
+
+  return Object.hasOwn(technologyCatalog, key)
+    ? technologyCatalog[key]
+    : { name };
+}
