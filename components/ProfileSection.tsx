@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { ArrowUpRight } from "lucide-react";
 
 export default function ProfileSection() {
   return (
@@ -40,6 +41,27 @@ export default function ProfileSection() {
                 경북소프트웨어마이스터고등학교
               </p>
             </div>
+            <a
+              href="https://github.com/siregon72"
+              target="_blank"
+              rel="noreferrer noopener"
+              className="group mt-3 inline-flex min-h-10 items-center gap-2 rounded-md text-zinc-500 transition-colors hover:text-zinc-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 dark:text-zinc-400 dark:hover:text-zinc-50 dark:focus-visible:ring-offset-zinc-950"
+            >
+              <span className="flex size-6 items-center justify-center">
+                <Image
+                  src="/icons/github.svg"
+                  alt=""
+                  width={20}
+                  height={20}
+                  className="size-5 opacity-60 transition-opacity group-hover:opacity-100 dark:invert"
+                />
+              </span>
+              GitHub
+              <ArrowUpRight
+                aria-hidden="true"
+                className="size-3.5 opacity-60 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+              />
+            </a>
           </div>
         </div>
       </div>

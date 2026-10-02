@@ -4,15 +4,18 @@ import { ImageIcon } from "lucide-react";
 export function ProjectVisual({
   image,
   alt,
+  aspectRatio,
   className = "",
 }: {
   image: string | null;
   alt: string;
+  aspectRatio?: number;
   className?: string;
 }) {
   return (
     <div
       className={`relative overflow-hidden border border-zinc-200 bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 ${className}`}
+      style={aspectRatio ? { aspectRatio } : undefined}
     >
       {image ? (
         <Image

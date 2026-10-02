@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import type { Project } from "@/lib/projects";
 import { ProjectVisual } from "@/components/ProjectVisual";
+import { TechnologyBadges } from "@/components/TechnologyBadges";
 
 export function ProjectCard({
   project,
@@ -19,7 +20,7 @@ export function ProjectCard({
         <ProjectVisual
           image={project.image}
           alt={project.imageAlt}
-          className="aspect-16/10 rounded-3xl transition duration-500 group-hover:-translate-y-1 group-hover:shadow-xl group-focus-visible:-translate-y-1 group-focus-visible:ring-2 group-focus-visible:ring-zinc-900 group-focus-visible:ring-offset-4 dark:group-focus-visible:ring-zinc-100 dark:group-focus-visible:ring-offset-zinc-950"
+          className="aspect-video rounded-3xl transition duration-500 group-hover:-translate-y-1 group-hover:shadow-xl group-focus-visible:-translate-y-1 group-focus-visible:ring-2 group-focus-visible:ring-zinc-900 group-focus-visible:ring-offset-4 dark:group-focus-visible:ring-zinc-100 dark:group-focus-visible:ring-offset-zinc-950"
         />
 
         <div className="sm:px-3">
@@ -37,16 +38,10 @@ export function ProjectCard({
           <p className="mt-3 leading-7 text-zinc-600 dark:text-zinc-400">
             {project.summary}
           </p>
-          <ul className="mt-6 flex flex-wrap gap-2" aria-label="사용 기술">
-            {project.technologies.slice(0, 3).map((technology) => (
-              <li
-                key={technology}
-                className="rounded-full border border-zinc-200 px-3 py-1 text-xs text-zinc-600 transition-colors group-hover:border-zinc-400 dark:border-zinc-800 dark:text-zinc-400 dark:group-hover:border-zinc-600"
-              >
-                {technology}
-              </li>
-            ))}
-          </ul>
+          <TechnologyBadges
+            technologies={project.technologies}
+            className="mt-6"
+          />
         </div>
       </Link>
     </li>

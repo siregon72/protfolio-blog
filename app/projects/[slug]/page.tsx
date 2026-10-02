@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, Check, Wrench } from "lucide-react";
 import { ProjectVisual } from "@/components/ProjectVisual";
+import { TechnologyBadges } from "@/components/TechnologyBadges";
 import { getProject, projects } from "@/lib/projects";
 
 export function generateStaticParams() {
@@ -64,6 +65,7 @@ export default async function ProjectDetailPage({
           <p className="mt-6 max-w-3xl text-lg leading-8 text-zinc-600 dark:text-zinc-400">
             {project.description}
           </p>
+          <TechnologyBadges technologies={project.technologies} className="mt-6" />
         </div>
         <span className="w-fit rounded-full border border-zinc-200 px-4 py-2 text-sm text-zinc-600 sm:justify-self-end dark:border-zinc-800 dark:text-zinc-400">
           {project.status}
@@ -73,7 +75,8 @@ export default async function ProjectDetailPage({
       <ProjectVisual
         image={project.image}
         alt={project.imageAlt}
-        className="mt-12 aspect-[16/9] rounded-[2rem] sm:mt-16 sm:rounded-[2.5rem]"
+        aspectRatio={project.imageAspectRatio}
+        className={`mt-12 aspect-[16/9] sm:mt-16 ${project.imageAspectRatio ? "rounded-xl" : "rounded-[2rem] sm:rounded-[2.5rem]"}`}
       />
 
       <div className="mt-20 space-y-24">
@@ -83,7 +86,7 @@ export default async function ProjectDetailPage({
             id="contribution-heading"
             className="mt-4 text-3xl font-semibold tracking-tight"
           >
-            주요 기여
+            {project.category === "subproject" ? "주요 기능 및 구현" : "주요 기여"}
           </h2>
           <ul className="mt-8 space-y-4">
             {project.contributions.map((contribution) => (
@@ -104,43 +107,62 @@ export default async function ProjectDetailPage({
           </ul>
         </section>
 
-        <section aria-labelledby="troubleshooting-heading">
-          <SectionLabel>Troubleshooting</SectionLabel>
-          <div className="mt-4 flex items-center gap-3">
-            <span className="flex size-10 items-center justify-center rounded-xl bg-zinc-100 dark:bg-zinc-900">
-              <Wrench aria-hidden="true" className="size-5" />
-            </span>
+        {project.learnings && project.learnings.length > 0 && (
+          <section aria-labelledby="learnings-heading">
+            <SectionLabel>What I learned</SectionLabel>
             <h2
-              id="troubleshooting-heading"
-              className="text-3xl font-semibold tracking-tight"
+              id="learnings-heading"
+              className="mt-4 text-3xl font-semibold tracking-tight"
             >
-              문제 해결 과정
+              배운 점
             </h2>
-          </div>
+            <ul className="mt-8 list-disc space-y-4 pl-5 leading-7 text-zinc-700 marker:text-zinc-400 dark:text-zinc-300">
+              {project.learnings.map((learning) => (
+                <li key={learning}>{learning}</li>
+              ))}
+            </ul>
+          </section>
+        )}
 
-          <div className="mt-8 space-y-6">
-            {project.troubleshooting.map((item, index) => (
-              <article
-                key={item.title}
-                className="rounded-3xl border border-zinc-200 p-6 sm:p-8 dark:border-zinc-800"
+        {project.troubleshooting.length > 0 && (
+          <section aria-labelledby="troubleshooting-heading">
+            <SectionLabel>Troubleshooting</SectionLabel>
+            <div className="mt-4 flex items-center gap-3">
+              <span className="flex size-10 items-center justify-center rounded-xl bg-zinc-100 dark:bg-zinc-900">
+                <Wrench aria-hidden="true" className="size-5" />
+              </span>
+              <h2
+                id="troubleshooting-heading"
+                className="text-3xl font-semibold tracking-tight"
               >
-                <div className="flex items-start gap-4">
-                  <span className="font-mono text-sm text-zinc-400 dark:text-zinc-600">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <h3 className="text-xl font-semibold tracking-tight">
-                    {item.title}
-                  </h3>
-                </div>
-                <dl className="mt-7 space-y-6 sm:ml-9">
-                  <TroubleItem label="문제" text={item.problem} />
-                  <TroubleItem label="해결" text={item.solution} />
-                  <TroubleItem label="결과" text={item.result} />
-                </dl>
-              </article>
-            ))}
-          </div>
-        </section>
+                문제 해결 과정
+              </h2>
+            </div>
+
+            <div className="mt-8 space-y-6">
+              {project.troubleshooting.map((item, index) => (
+                <article
+                  key={item.title}
+                  className="rounded-3xl border border-zinc-200 p-6 sm:p-8 dark:border-zinc-800"
+                >
+                  <div className="flex items-start gap-4">
+                    <span className="font-mono text-sm text-zinc-400 dark:text-zinc-600">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <h3 className="text-xl font-semibold tracking-tight">
+                      {item.title}
+                    </h3>
+                  </div>
+                  <dl className="mt-7 space-y-6 sm:ml-9">
+                    <TroubleItem label="문제" text={item.problem} />
+                    <TroubleItem label="해결" text={item.solution} />
+                    <TroubleItem label="결과" text={item.result} />
+                  </dl>
+                </article>
+              ))}
+            </div>
+          </section>
+        )}
       </div>
     </main>
   );

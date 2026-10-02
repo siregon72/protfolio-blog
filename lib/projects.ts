@@ -1,5 +1,6 @@
 export type Project = {
   slug: string;
+  category: "project" | "subproject";
   title: string;
   englishTitle: string;
   summary: string;
@@ -9,7 +10,9 @@ export type Project = {
   technologies: string[];
   image: string | null;
   imageAlt: string;
+  imageAspectRatio?: number;
   contributions: string[];
+  learnings?: string[];
   troubleshooting: {
     title: string;
     problem: string;
@@ -18,7 +21,171 @@ export type Project = {
   }[];
 };
 
-export const projects: Project[] = [];
+export const projects: Project[] = [
+  {
+    slug: "developer-portfolio",
+    category: "project",
+    title: "Protfolio Blog",
+    englishTitle: "Developer Portfolio",
+    summary:
+      "프로필, 기술 스택, 수상 내역과 프로젝트 경험을 한곳에서 소개하는 반응형 포트폴리오 웹사이트입니다.",
+    description:
+      "Next.js App Router와 TypeScript로 만든 개인 포트폴리오 웹사이트입니다. 첫 화면에서 프로필과 기술 스택, 수상 내역을 소개하고, 프로젝트 페이지에서는 프로젝트와 서브 프로젝트를 나누어 보여줍니다. 각 항목은 기여 내용과 문제 해결 과정을 담은 상세 페이지로 이어지며, 모바일 화면과 시스템 테마 설정도 지원합니다.",
+    year: "2026",
+    status: "개발·개선 중",
+    technologies: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4"],
+    image: "/projects/developer-portfolio.png",
+    imageAlt: "Developer Portfolio 웹사이트의 화면 구성 미리보기",
+    contributions: [
+      "프로필, 기술 아이콘, 수상 내역을 재사용 가능한 컴포넌트로 나누어 홈 화면을 구성했습니다.",
+      "프로젝트 데이터를 타입으로 정의하고 Projects와 Sub Projects 섹션 및 공통 상세 페이지를 구현했습니다.",
+      "프로젝트 slug를 사용해 상세 경로와 페이지별 메타데이터를 생성하고, 잘못된 경로는 404로 처리했습니다.",
+      "next-themes로 시스템 설정을 따르는 다크·라이트 모드와 수동 전환 버튼을 구현했습니다.",
+      "모바일부터 데스크톱까지 사용할 수 있도록 레이아웃을 반응형으로 구성하고 키보드 포커스 표시와 콘텐츠별 접근성 이름을 적용했습니다.",
+    ],
+    troubleshooting: [
+      {
+        title: "고정 헤더와 페이지 콘텐츠가 겹치는 문제",
+        problem:
+          "상단 내비게이션을 화면에 고정하면 페이지에 진입했을 때 제목이나 첫 콘텐츠가 헤더 아래에 가려질 수 있었습니다.",
+        solution:
+          "화면 크기와 페이지 유형에 맞춰 상단 여백을 지정하고, 전역 스크롤 위치에도 헤더 높이를 고려한 여유 공간을 설정했습니다.",
+        result:
+          "홈, 프로젝트 목록, 상세 페이지에서 콘텐츠가 헤더에 가려지지 않고 일관된 위치에서 시작합니다.",
+      },
+      {
+        title: "서버 렌더링과 브라우저 테마 설정의 차이",
+        problem:
+          "시스템 테마는 브라우저에서 확인할 수 있어 서버의 초기 HTML과 클라이언트 화면의 테마가 달라질 수 있었습니다.",
+        solution:
+          "next-themes의 ThemeProvider가 class 속성으로 테마를 적용하고 시스템 설정을 따르도록 구성했습니다. 테마가 적용되는 html에는 hydration 경고 억제를 지정하고, 전환 버튼은 resolvedTheme을 기준으로 동작하게 했습니다.",
+        result:
+          "사용자의 시스템 테마를 시작 테마로 반영하면서 다크 모드와 라이트 모드를 전환할 수 있습니다.",
+      },
+      {
+        title: "프로젝트 분류와 상세 페이지의 데이터 동기화",
+        problem:
+          "프로젝트와 서브 프로젝트를 목록에서 나누면서 상세 페이지 경로나 설명 데이터까지 따로 관리하면 분류별 표시와 상세 내용이 어긋날 수 있었습니다.",
+        solution:
+          "분류를 포함한 하나의 타입 데이터에서 목록을 나누고, 같은 데이터를 상세 경로 생성·프로젝트 조회·메타데이터에 사용하도록 구성했습니다.",
+        result:
+          "두 목록은 구분되어 보이면서도 각 카드가 같은 규칙의 상세 페이지로 연결되고, 알 수 없는 slug는 404로 처리됩니다.",
+      },
+    ],
+  },
+  {
+    slug: "soundmotion",
+    category: "project",
+    title: "Sound Motion",
+    englishTitle: "SoundMotion",
+    summary:
+      "음악 탐색부터 재생까지 자연스럽게 이어지는 경험을 제공하는 반응형 음악 플레이어입니다.",
+    description:
+      "SoundMotion은 음악 탐색부터 재생까지 자연스럽게 이어지는 경험을 제공하는 음악 플레이어입니다. 앨범 아트와 음악 정보를 중심으로 콘텐츠에 몰입할 수 있도록 구성하고, 다양한 화면에서 편안하게 사용할 수 있는 반응형 인터페이스와 다크 테마를 적용했습니다.",
+    year: "2026",
+    status: "개발 중",
+    technologies: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Cloudflare",
+      "Supabase",
+    ],
+    image: "/projects/soundmotion.png",
+    imageAlt: "SoundMotion 음악 비주얼라이저 프로젝트 화면",
+    contributions: [
+      "음악 탐색부터 재생까지 자연스럽게 이어지는 사용자 흐름을 설계하고 구현했습니다.",
+      "재생·일시정지, 진행 시간, 볼륨 등 오디오 상태와 화면이 일관되게 동작하도록 관리했습니다.",
+      "앨범 아트와 음악 정보를 중심으로 콘텐츠에 몰입할 수 있는 반응형 인터페이스를 제작했습니다.",
+    ],
+    troubleshooting: [
+      {
+        title: "Canvas 값 업데이트로 인한 잦은 재렌더링",
+        problem:
+          "Canvas의 실시간 값을 useState로 관리하면서 값이 바뀔 때마다 React 컴포넌트가 반복 렌더링되고 화면이 끊기는 문제가 발생했습니다.",
+        solution:
+          "고빈도로 바뀌는 Canvas 값을 useRef로 관리해 React 상태와 분리하고, 불필요한 재렌더링을 줄였습니다.",
+        result:
+          "화면 성능을 개선하고 Canvas 애니메이션이 더 부드럽게 동작하도록 했습니다. 이 경험을 통해 자주 변하지만 React 렌더링을 유발할 필요가 없는 값은 useRef로 관리하는 것이 효과적임을 배웠습니다.",
+      },
+      {
+        title: "오디오 상태와 화면 상태의 불일치",
+        problem:
+          "재생 버튼, 진행 시간, 선택된 트랙 정보를 각각 관리하면서 실제 오디오 상태와 화면에 표시되는 정보가 어긋나는 문제가 발생했습니다.",
+        solution:
+          "현재 트랙과 재생 여부, 재생 시간을 하나의 상태 흐름으로 통합하고 오디오 이벤트를 기준으로 화면이 갱신되도록 구성했습니다.",
+        result:
+          "트랙을 변경하거나 재생 위치를 이동해도 플레이어 정보가 즉시 동기화되어 일관된 음악 감상 경험을 제공할 수 있게 되었습니다.",
+      },
+      {
+        title: "반응형 화면에서 발생하는 플레이어 레이아웃 문제",
+        problem:
+          "화면 폭이 줄어들면서 앨범 정보와 재생 컨트롤이 겹치거나 일부 버튼의 터치 영역이 지나치게 작아지는 문제가 있었습니다.",
+        solution:
+          "화면 크기에 따라 정보 배치와 컨트롤 구조가 변경되도록 반응형 레이아웃을 설계하고, 모바일 환경에서는 핵심 기능을 중심으로 인터페이스를 단순화했습니다.",
+        result:
+          "데스크톱과 모바일 모두에서 정보의 우선순위가 유지되고, 주요 재생 기능을 편리하게 조작할 수 있게 되었습니다.",
+      },
+    ],
+  },
+  {
+    slug: "ctf-writeup-manager",
+    category: "subproject",
+    title: "CTF Writeup Manager",
+    englishTitle: "CTF Writeup Manager",
+    summary:
+      "CTF 문제 풀이를 분야별로 기록하고 관리하는 Flask 기반 웹앱입니다.",
+    description:
+      "CTF 문제의 이름과 분야, 풀이 과정을 한곳에 기록하고 관리하는 웹 애플리케이션입니다. 문제 풀이를 추가·조회·수정·삭제할 수 있으며, 최신 기록 목록에서 원하는 문제를 선택해 상세 내용을 확인할 수 있습니다.",
+    year: "2026",
+    status: "구현 완료",
+    technologies: ["Python", "Flask", "SQLite", "Tailwind CSS"],
+    image: "/projects/ctf-writeup-manager.png",
+    imageAlt: "CTF Writeup Manager의 Reversing 문제 풀이 상세 화면",
+    contributions: [
+      "Flask 라우트와 SQLite를 사용해 풀이 기록의 추가·조회·수정·삭제 기능을 구현했습니다.",
+      "Reversing, Pwn, Web, Crypto, Forensics 분야로 기록을 분류하고 최신 기록부터 목록에 표시했습니다.",
+      "문제 목록에서 항목을 선택하면 풀이 상세 화면을 볼 수 있도록 구성했습니다.",
+      "기록이 없을 때 안내 화면을 표시하고, 존재하지 않는 기록 요청은 404로 처리했습니다.",
+      "조회와 데이터 변경에 SQL 매개변수 바인딩을 적용하고, Tailwind CSS로 반응형 화면을 구성했습니다.",
+    ],
+    learnings: [
+      "Flask 라우트와 SQLite를 연결해 데이터의 추가·조회·수정·삭제가 처리되는 흐름을 익혔습니다.",
+      "SQL 매개변수 바인딩을 적용하며 사용자 입력과 SQL 쿼리를 분리해 안전하게 처리하는 방법을 배웠습니다.",
+      "기록 목록과 상세 화면을 구성하며, 빈 목록과 잘못된 요청에 대한 사용자 안내도 함께 설계했습니다.",
+    ],
+    troubleshooting: [],
+  },
+  {
+    slug: "simplechat",
+    category: "subproject",
+    title: "Simple Chat",
+    englishTitle: "SimpleChat",
+    summary:
+      "Java Socket과 Thread로 구현한 콘솔 기반 실시간 1:1 채팅 프로그램입니다.",
+    description:
+      "Java의 Socket과 ServerSocket을 활용한 콘솔 기반 1:1 채팅 프로그램입니다. ChatServer가 5001번 포트에서 클라이언트 접속을 기다리고, 연결 후에는 서버와 클라이언트가 TCP 소켓의 입출력 스트림으로 메시지를 주고받습니다. 수신 작업을 별도 스레드에서 실행해 메시지를 받으면서도 직접 입력하고 전송할 수 있도록 구현했습니다.",
+    year: "2026",
+    status: "구현 완료",
+    technologies: ["Java"],
+    image: "/projects/simplechat.png",
+    imageAlt:
+      "SimpleChat 서버와 클라이언트 콘솔에서 test와 test2 메시지를 주고받는 실행 화면",
+    imageAspectRatio: 2916 / 530,
+    contributions: [
+      "ServerSocket으로 5001번 포트에 채팅 서버를 열고 클라이언트 접속을 기다리도록 구현했습니다.",
+      "Socket으로 서버와 클라이언트를 연결하고 입출력 스트림을 사용한 양방향 통신을 구현했습니다.",
+      "BufferedReader로 상대방의 메시지를 수신하고 PrintWriter로 콘솔에서 입력한 메시지를 전송했습니다.",
+      "메시지 수신 작업을 별도의 Thread로 분리해 수신과 사용자 입력을 동시에 처리했습니다.",
+    ],
+    learnings: [
+      "서버의 접속 대기부터 클라이언트 연결까지 TCP 소켓 통신의 기본 흐름을 이해했습니다.",
+      "입출력 스트림을 통해 서버와 클라이언트 사이에 메시지가 전달되는 방식을 학습했습니다.",
+      "스레드를 활용해 메시지 수신과 사용자 입력을 동시에 처리하는 방식을 경험했습니다.",
+    ],
+    troubleshooting: [],
+  },
+];
 
 export function getProject(slug: string) {
   return projects.find((project) => project.slug === slug);

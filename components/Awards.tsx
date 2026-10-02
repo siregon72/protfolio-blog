@@ -35,6 +35,12 @@ const awards = [
     award: "장려상",
     category: "교외 대회",
   },
+  {
+    year: "2026",
+    event: "🥉궁중문화축전 AI 영상 공모전",
+    award: "장려상",
+    category: "교외 대회",
+  },
 ];
 
 const categories = ["교외 대회", "교내 대회"];
