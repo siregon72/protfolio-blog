@@ -20,7 +20,10 @@ export function ProjectCard({ project }: { project: Project }) {
         <p className="mt-3 leading-7 text-zinc-500 dark:text-zinc-400">
           {project.summary}
         </p>
-        <TechnologyBadges technologies={project.technologies} className="mt-5" />
+        <TechnologyBadges
+          technologies={project.technologies}
+          className="mt-5"
+        />
       </Link>
     </li>
   );

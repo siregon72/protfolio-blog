@@ -30,11 +30,9 @@ const projectSections = [
 
 export default function ProjectsPage() {
   return (
-    <main className="mx-auto w-full max-w-7xl px-6 pb-15 pt-15 sm:px-10 sm:pb-28 sm:pt-40">
-      <h1 className="text-5xl font-semibold tracking-[-0.05em] text-zinc-950 sm:text-7xl dark:text-zinc-50">
-        Projects
-      </h1>
-      <div className="mt-16 space-y-20 sm:mt-24">
+    <main className="mx-auto w-full max-w-7xl px-6 pb-15 pt-28 sm:px-10 sm:pb-28 sm:pt-40">
+      <h1 className="sr-only">Projects</h1>
+      <div className="space-y-20">
         {projectSections.map((section) => (
           <section key={section.id} aria-labelledby={section.id}>
             <h2
