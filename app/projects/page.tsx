@@ -9,9 +9,13 @@ export const metadata: Metadata = {
 };
 
 export default function ProjectsPage() {
-  const mainProjects = projects.filter(
-    (project) => project.category === "project",
-  );
+  const mainProjects = projects
+    .filter((project) => project.category === "project")
+    .sort((first, second) => {
+      if (first.slug === "soundmotion") return -1;
+      if (second.slug === "soundmotion") return 1;
+      return 0;
+    });
   const subProjects = projects.filter(
     (project) => project.category === "subproject",
   );
