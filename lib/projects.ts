@@ -36,13 +36,7 @@ export const projects: Project[] = [
     technologies: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4"],
     image: "/projects/developer-portfolio.png",
     imageAlt: "Developer Portfolio 웹사이트의 화면 구성 미리보기",
-    contributions: [
-      "프로필, 기술 아이콘, 수상 내역을 재사용 가능한 컴포넌트로 나누어 홈 화면을 구성했습니다.",
-      "프로젝트 데이터를 타입으로 정의하고 Projects와 Sub Projects 섹션 및 공통 상세 페이지를 구현했습니다.",
-      "프로젝트 slug를 사용해 상세 경로와 페이지별 메타데이터를 생성하고, 잘못된 경로는 404로 처리했습니다.",
-      "next-themes로 시스템 설정을 따르는 다크·라이트 모드와 수동 전환 버튼을 구현했습니다.",
-      "모바일부터 데스크톱까지 사용할 수 있도록 레이아웃을 반응형으로 구성하고 키보드 포커스 표시와 콘텐츠별 접근성 이름을 적용했습니다.",
-    ],
+    contributions: [],
     troubleshooting: [],
   },
   {

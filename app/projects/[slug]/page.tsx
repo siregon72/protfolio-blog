@@ -80,32 +80,34 @@ export default async function ProjectDetailPage({
       />
 
       <div className="mt-20 space-y-24">
-        <section aria-labelledby="contribution-heading">
-          <SectionLabel>What I did</SectionLabel>
-          <h2
-            id="contribution-heading"
-            className="mt-4 text-3xl font-semibold tracking-tight"
-          >
-            {project.category === "subproject" ? "주요 기능 및 구현" : "주요 기여"}
-          </h2>
-          <ul className="mt-8 space-y-4">
-            {project.contributions.map((contribution) => (
-              <li
-                key={contribution}
-                className="flex gap-4 leading-7 text-zinc-700 dark:text-zinc-300"
-              >
-                <span className="mt-1.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-zinc-950 text-white dark:bg-zinc-100 dark:text-zinc-950">
-                  <Check
-                    aria-hidden="true"
-                    className="size-3"
-                    strokeWidth={3}
-                  />
-                </span>
-                {contribution}
-              </li>
-            ))}
-          </ul>
-        </section>
+        {project.contributions.length > 0 && (
+          <section aria-labelledby="contribution-heading">
+            <SectionLabel>What I did</SectionLabel>
+            <h2
+              id="contribution-heading"
+              className="mt-4 text-3xl font-semibold tracking-tight"
+            >
+              {project.category === "subproject" ? "주요 기능 및 구현" : "주요 기여"}
+            </h2>
+            <ul className="mt-8 space-y-4">
+              {project.contributions.map((contribution) => (
+                <li
+                  key={contribution}
+                  className="flex gap-4 leading-7 text-zinc-700 dark:text-zinc-300"
+                >
+                  <span className="mt-1.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-zinc-950 text-white dark:bg-zinc-100 dark:text-zinc-950">
+                    <Check
+                      aria-hidden="true"
+                      className="size-3"
+                      strokeWidth={3}
+                    />
+                  </span>
+                  {contribution}
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
 
         {project.learnings && project.learnings.length > 0 && (
           <section aria-labelledby="learnings-heading">

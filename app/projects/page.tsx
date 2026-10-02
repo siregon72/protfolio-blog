@@ -40,8 +40,8 @@ export default function ProjectsPage() {
             Projects
           </h2>
           <ul className="mt-8" aria-label="프로젝트 목록">
-            {mainProjects.map((project, index) => (
-              <ProjectCard key={project.slug} project={project} index={index} />
+            {mainProjects.map((project) => (
+              <ProjectCard key={project.slug} project={project} />
             ))}
           </ul>
         </section>
