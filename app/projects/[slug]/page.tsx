@@ -61,7 +61,14 @@ export default async function ProjectDetailPage({
             />
             <span>{project.year}</span>
           </div>
-          <h1 className="mt-5 text-5xl font-semibold tracking-[-0.055em] text-zinc-950 sm:text-7xl dark:text-zinc-50">
+          <h1
+            className={cn(
+              "mt-5 font-semibold tracking-[-0.055em] text-zinc-950 dark:text-zinc-50",
+              project.caseStudy
+                ? "text-3xl leading-tight sm:text-5xl lg:text-6xl"
+                : "text-5xl sm:text-7xl",
+            )}
+          >
             {project.title}
           </h1>
           <p className="mt-6 max-w-3xl text-lg leading-8 text-zinc-600 dark:text-zinc-400">
@@ -74,17 +81,19 @@ export default async function ProjectDetailPage({
         </span>
       </header>
 
-      <ProjectVisual
-        image={project.image}
-        alt={project.imageAlt}
-        aspectRatio={project.imageAspectRatio}
-        className={cn(
-          "mt-12 sm:mt-16",
-          project.imageAspectRatio
-            ? "rounded-xl"
-            : "rounded-[2rem] sm:rounded-[2.5rem]",
-        )}
-      />
+      {!project.caseStudy && (
+        <ProjectVisual
+          image={project.image}
+          alt={project.imageAlt}
+          aspectRatio={project.imageAspectRatio}
+          className={cn(
+            "mt-12 sm:mt-16",
+            project.imageAspectRatio
+              ? "rounded-xl"
+              : "rounded-[2rem] sm:rounded-[2.5rem]",
+          )}
+        />
+      )}
 
       <ProjectDetails project={project} />
     </main>

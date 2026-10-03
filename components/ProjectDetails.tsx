@@ -1,8 +1,13 @@
 import type { ReactNode } from "react";
 import { Check, Wrench } from "lucide-react";
 import type { Project } from "@/lib/projects";
+import { ReverseEngineeringDetails } from "@/components/ReverseEngineeringDetails";
 
 export function ProjectDetails({ project }: { project: Project }) {
+  if (project.caseStudy === "2048-reverse-engineering") {
+    return <ReverseEngineeringDetails />;
+  }
+
   if (
     project.contributions.length === 0 &&
     !project.learnings?.length &&

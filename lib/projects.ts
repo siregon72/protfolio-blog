@@ -11,6 +11,7 @@ export type Project = {
   image: string | null;
   imageAlt: string;
   imageAspectRatio?: number;
+  caseStudy?: "2048-reverse-engineering";
   contributions: string[];
   learnings?: string[];
   troubleshooting: {
@@ -22,6 +23,31 @@ export type Project = {
 };
 
 export const projects: Project[] = [
+  {
+    slug: "2048-reverse-engineering",
+    category: "project",
+    title: "2048 Reverse Engineering & Binary Patching",
+    englishTitle: "Reverse Engineering",
+    summary:
+      "2048 실행 파일을 IDA로 분석하고, 소스코드 수정 없이 바이너리를 패치해 획득 점수를 변경했습니다.",
+    description:
+      "오픈소스 2048 게임의 실행 파일을 IDA로 분석하고, 점수 계산 로직을 찾아 소스코드를 수정하지 않고 바이너리 패치를 통해 획득 점수를 변경한 프로젝트입니다.",
+    year: "2026",
+    status: "분석·패치 완료",
+    technologies: [
+      "IDA",
+      "C",
+      "x86-64 Assembly",
+      "macOS",
+      "clang",
+      "Binary Patching",
+    ],
+    image: "/projects/2048-reverse-engineering/patched-game.png",
+    imageAlt: "바이너리 패치 후 실행한 2048 게임 화면",
+    caseStudy: "2048-reverse-engineering",
+    contributions: [],
+    troubleshooting: [],
+  },
   {
     slug: "developer-portfolio",
     category: "project",
