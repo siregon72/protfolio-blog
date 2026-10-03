@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { ArrowDown, Wrench } from "lucide-react";
+import { ArrowDown } from "lucide-react";
 import { ProjectScreenshot } from "@/components/ProjectScreenshot";
 
 const imagePath = "/projects/2048-reverse-engineering";
@@ -187,14 +187,12 @@ export function ReverseEngineeringDetails() {
       </AnalysisSection>
 
       <section aria-labelledby="troubleshooting-heading">
-        <div className="flex items-center gap-3">
-          <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-zinc-100 dark:bg-zinc-900">
-            <Wrench aria-hidden="true" className="size-5" />
-          </span>
-          <h2 id="troubleshooting-heading" className="text-2xl font-semibold tracking-tight sm:text-3xl">
-            Troubleshooting
-          </h2>
-        </div>
+        <p className="text-xs font-medium tracking-[0.18em] text-zinc-500 uppercase dark:text-zinc-400">
+          Troubleshooting
+        </p>
+        <h2 id="troubleshooting-heading" className="mt-4 text-2xl font-semibold tracking-tight sm:text-3xl">
+          문제 해결 과정
+        </h2>
         <div className="mt-8 space-y-6">
           {troubleshootingCases.map((item, index) => (
             <article key={item.title} className="rounded-3xl border border-zinc-200 p-6 sm:p-8 dark:border-zinc-800">

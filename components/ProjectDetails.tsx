@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import { Check, Wrench } from "lucide-react";
 import type { Project } from "@/lib/projects";
 import { ReverseEngineeringDetails } from "@/components/ReverseEngineeringDetails";
 
@@ -29,23 +28,16 @@ export function ProjectDetails({ project }: { project: Project }) {
               ? "주요 기능 및 구현"
               : "주요 기여"}
           </h2>
-          <ul className="mt-8 space-y-4">
+          <ol className="mt-8 list-decimal space-y-4 pl-5 marker:text-zinc-500 dark:marker:text-zinc-400">
             {project.contributions.map((contribution) => (
               <li
                 key={contribution}
-                className="flex gap-4 leading-7 text-zinc-700 dark:text-zinc-300"
+                className="leading-7 text-zinc-700 dark:text-zinc-300"
               >
-                <span className="mt-1.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-zinc-950 text-white dark:bg-zinc-100 dark:text-zinc-950">
-                  <Check
-                    aria-hidden="true"
-                    className="size-3"
-                    strokeWidth={3}
-                  />
-                </span>
                 {contribution}
               </li>
             ))}
-          </ul>
+          </ol>
         </section>
       )}
 
@@ -68,17 +60,13 @@ export function ProjectDetails({ project }: { project: Project }) {
 
       {project.troubleshooting.length > 0 && (
         <section aria-labelledby="troubleshooting-heading">
-          <div className="flex items-center gap-3">
-            <span className="flex size-10 items-center justify-center rounded-xl bg-zinc-100 dark:bg-zinc-900">
-              <Wrench aria-hidden="true" className="size-5" />
-            </span>
-            <h2
-              id="troubleshooting-heading"
-              className="text-3xl font-semibold tracking-tight"
-            >
-              Troubleshooting
-            </h2>
-          </div>
+          <SectionLabel>Troubleshooting</SectionLabel>
+          <h2
+            id="troubleshooting-heading"
+            className="mt-4 text-3xl font-semibold tracking-tight"
+          >
+            문제 해결 과정
+          </h2>
 
           <div className="mt-8 space-y-6">
             {project.troubleshooting.map((item, index) => (

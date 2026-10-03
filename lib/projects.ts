@@ -76,7 +76,7 @@ export const projects: Project[] = [
       "Cloudflare",
       "Supabase",
     ],
-    image: "/projects/soundmotion.png",
+    image: "/projects/soundmotion-player.png",
     imageAlt: "SoundMotion 음악 비주얼라이저 프로젝트 화면",
     contributions: [
       "서비스의 주요 기능과 화면 구성을 정의하고, 음악 탐색부터 재생까지 이어지는 전체 프로젝트 구조를 설계했습니다.",
