@@ -68,8 +68,7 @@ export function ProjectDetails({ project }: { project: Project }) {
 
       {project.troubleshooting.length > 0 && (
         <section aria-labelledby="troubleshooting-heading">
-          <SectionLabel>Troubleshooting</SectionLabel>
-          <div className="mt-4 flex items-center gap-3">
+          <div className="flex items-center gap-3">
             <span className="flex size-10 items-center justify-center rounded-xl bg-zinc-100 dark:bg-zinc-900">
               <Wrench aria-hidden="true" className="size-5" />
             </span>
@@ -77,7 +76,7 @@ export function ProjectDetails({ project }: { project: Project }) {
               id="troubleshooting-heading"
               className="text-3xl font-semibold tracking-tight"
             >
-              문제 해결 과정
+              Troubleshooting
             </h2>
           </div>
 

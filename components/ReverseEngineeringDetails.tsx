@@ -1,9 +1,48 @@
 import type { ReactNode } from "react";
-import { ArrowDown } from "lucide-react";
+import { ArrowDown, Wrench } from "lucide-react";
 import { ProjectScreenshot } from "@/components/ProjectScreenshot";
 
 const imagePath = "/projects/2048-reverse-engineering";
 const paragraphStyle = "leading-7 text-zinc-600 dark:text-zinc-400";
+
+const troubleshootingCases = [
+  {
+    title: "IDA에서 ARM64 바이너리를 열 수 없음",
+    problem:
+      "Apple Silicon Mac에서 기본으로 컴파일한 실행 파일을 IDA로 열었지만, 설치된 IDA 버전에서 ARM 프로세서를 지원하지 않아 분석할 수 없었습니다.",
+    cause: "clang이 기본적으로 ARM64 Mach-O 실행 파일을 생성하고 있었습니다.",
+    solution: (
+      <>
+        <p>분석용 바이너리를 x86-64 아키텍처로 다시 컴파일했습니다.</p>
+        <CodeBlock label="x86-64 분석용 바이너리 컴파일">
+          {"clang -arch x86_64 -O0 2048.c -o 2048_x86"}
+        </CodeBlock>
+        <p>그 결과 IDA에서 정상적으로 x86-64 Assembly를 분석할 수 있었습니다.</p>
+      </>
+    ),
+  },
+  {
+    title: "잘못된 위치를 패치해 의도와 다른 동작 발생",
+    problem:
+      "점수를 변경하기 위해 기계어 패턴을 검색해 수정했지만, 점수가 아니라 타일 병합 결과 자체가 달라지는 문제가 발생했습니다.",
+    cause:
+      "같은 형태의 기계어 패턴이 여러 위치에 존재해 점수 계산 코드가 아닌 다른 연산을 수정했습니다.",
+    solution: (
+      <>
+        <p>단순 바이트 검색 대신 IDA에서 점수 계산 코드를 다시 추적했습니다.</p>
+        <CodeBlock label="C · 점수 계산식">
+          {"*score += 1 << ++array[t];"}
+        </CodeBlock>
+        <CodeBlock label="Assembly · 패치 대상 명령어">
+          {"mov eax, 1\nshl eax, cl"}
+        </CodeBlock>
+        <p>
+          해당 명령의 정확한 주소인 <code className="font-mono">0x100000B86</code>을 확인했습니다.
+        </p>
+      </>
+    ),
+  },
+];
 
 export function ReverseEngineeringDetails() {
   return (
@@ -147,16 +186,45 @@ export function ReverseEngineeringDetails() {
         </div>
       </AnalysisSection>
 
-      <div className="rounded-2xl border border-zinc-200 p-6 sm:p-8 dark:border-zinc-800">
-        <p className="text-xs font-medium tracking-[0.18em] text-zinc-500 uppercase dark:text-zinc-400">
-          What I learned
-        </p>
-        <p className={`mt-4 max-w-3xl ${paragraphStyle}`}>
-          Decompiler의 C 표현과 실제 Assembly가 어떻게 연결되는지 확인했습니다.
-          함수 호출 관계와 비트 연산을 분석하고, stripped binary에서 기능을 추론한 뒤,
-          실행 파일의 실제 바이트를 수정하는 Binary Patching까지 경험했습니다.
-        </p>
-      </div>
+      <section aria-labelledby="troubleshooting-heading">
+        <div className="flex items-center gap-3">
+          <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-zinc-100 dark:bg-zinc-900">
+            <Wrench aria-hidden="true" className="size-5" />
+          </span>
+          <h2 id="troubleshooting-heading" className="text-2xl font-semibold tracking-tight sm:text-3xl">
+            Troubleshooting
+          </h2>
+        </div>
+        <div className="mt-8 space-y-6">
+          {troubleshootingCases.map((item, index) => (
+            <article key={item.title} className="rounded-3xl border border-zinc-200 p-6 sm:p-8 dark:border-zinc-800">
+              <div className="flex items-start gap-4">
+                <span className="font-mono text-sm text-zinc-400 dark:text-zinc-600">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <h3 className="text-xl font-semibold tracking-tight">{item.title}</h3>
+              </div>
+              <dl className="mt-7 space-y-6 sm:ml-9">
+                <TroubleItem label="문제"><p>{item.problem}</p></TroubleItem>
+                <TroubleItem label="원인"><p>{item.cause}</p></TroubleItem>
+                <TroubleItem label="해결">{item.solution}</TroubleItem>
+              </dl>
+            </article>
+          ))}
+        </div>
+      </section>
+
+    </div>
+  );
+}
+
+function TroubleItem({ label, children }: { label: string; children: ReactNode }) {
+  return (
+    <div className="grid gap-2 sm:grid-cols-[3.5rem_minmax(0,1fr)] sm:gap-4">
+      <dt className="text-sm font-semibold text-zinc-950 dark:text-zinc-100">{label}</dt>
+      <dd className="min-w-0 space-y-4 text-sm leading-7 text-zinc-600 dark:text-zinc-400">
+        {children}
+      </dd>
     </div>
   );
 }
