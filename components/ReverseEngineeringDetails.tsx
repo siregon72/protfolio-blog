@@ -214,6 +214,39 @@ export function ReverseEngineeringDetails() {
         </div>
       </section>
 
+      <section
+        aria-labelledby="source-license-heading"
+        className="border-t border-zinc-200 pt-6 text-sm leading-7 text-zinc-500 dark:border-zinc-800 dark:text-zinc-400"
+      >
+        <h2 id="source-license-heading" className="font-medium text-zinc-700 dark:text-zinc-300">
+          출처 및 라이선스
+        </h2>
+        <p className="mt-2">
+          원본 게임: {" "}
+          <a
+            href="https://github.com/mevdschee/2048.c"
+            target="_blank"
+            rel="noreferrer noopener"
+            className="rounded-sm underline underline-offset-4 outline-none hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring"
+          >
+            mevdschee/2048.c
+          </a>
+          {" "}· 작성자: Maurits van der Schee
+        </p>
+        <p>
+          원본 게임은 {" "}
+          <a
+            href="https://github.com/mevdschee/2048.c/blob/master/LICENSE"
+            target="_blank"
+            rel="noreferrer noopener"
+            className="rounded-sm underline underline-offset-4 outline-none hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring"
+          >
+            MIT 라이선스
+          </a>
+          로 공개되어 있습니다. 이 페이지는 해당 실행 파일을 분석하고 패치한 과정을 기록합니다.
+        </p>
+      </section>
+
     </div>
   );
 }
