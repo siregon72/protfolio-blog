@@ -28,7 +28,7 @@ export function ProjectDetails({ project }: { project: Project }) {
               ? "주요 기능 및 구현"
               : "주요 기여"}
           </h2>
-          <ol className="mt-8 list-decimal space-y-4 pl-5 marker:text-zinc-500 dark:marker:text-zinc-400">
+          <ul className="mt-8 list-disc space-y-4 pl-5 marker:text-zinc-500 dark:marker:text-zinc-400">
             {project.contributions.map((contribution) => (
               <li
                 key={contribution}
@@ -37,7 +37,7 @@ export function ProjectDetails({ project }: { project: Project }) {
                 {contribution}
               </li>
             ))}
-          </ol>
+          </ul>
         </section>
       )}
 
