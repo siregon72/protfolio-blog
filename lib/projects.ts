@@ -71,6 +71,7 @@ export const projects: Project[] = [
     status: "개발 종료",
     technologies: [
       "Next.js",
+      "React",
       "TypeScript",
       "Tailwind CSS",
       "Cloudflare",
