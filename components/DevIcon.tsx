@@ -8,9 +8,7 @@ import { getTechnology } from "@/lib/technologies";
 const skills = [
   "Assembly",
   "C",
-  "Python",
   "React",
-  "JavaScript",
   "Tailwind CSS",
   "Cloudflare",
   "Supabase",
