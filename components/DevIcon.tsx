@@ -10,8 +10,6 @@ const skills = [
   "C",
   "React",
   "Tailwind CSS",
-  "Cloudflare",
-  "Supabase",
   "GitHub",
 ].map(getTechnology);
 
