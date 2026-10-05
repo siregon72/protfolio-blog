@@ -9,8 +9,8 @@ const skills = [
   "Assembly",
   "C",
   "React",
+  "TypeScript",
   "Tailwind CSS",
-  "GitHub",
 ].map(getTechnology);
 
 export function DevIcon() {
