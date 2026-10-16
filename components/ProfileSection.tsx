@@ -1,10 +1,12 @@
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
+import { CachyOSLogo } from "@/components/CachyOSLogo";
 
 export default function ProfileSection() {
   return (
-    <section className="border-b border-zinc-200 pb-12 dark:border-zinc-800">
-      <div className="grid items-center gap-8 sm:grid-cols-[10rem_1fr]">
+    <section className="relative isolate overflow-hidden border-b border-zinc-200 pb-12 dark:border-zinc-800">
+      <CachyOSLogo />
+      <div className="relative z-10 grid items-center gap-8 sm:grid-cols-[10rem_minmax(0,1fr)]">
         <div className="relative aspect-3/4 w-32 overflow-hidden rounded-2xl border border-zinc-200 bg-linear-to-br from-zinc-100 to-zinc-200 shadow-sm sm:w-40 dark:border-zinc-700 dark:from-zinc-800 dark:to-zinc-900">
           <Image
             src="/profile/devprofile.jpeg"
@@ -16,7 +18,7 @@ export default function ProfileSection() {
           />
         </div>
 
-        <div>
+        <div className="min-w-0">
           <h1 className="text-3xl font-bold tracking-tight break-keep text-zinc-950 sm:text-5xl dark:text-zinc-50">
             안녕하세요,
             <br />
