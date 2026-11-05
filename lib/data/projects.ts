@@ -2,6 +2,59 @@ import type { Project } from "@/lib/types/project";
 
 export const projects: readonly Project[] = [
   {
+    slug: "fitai",
+    featured: true,
+    category: "project",
+    title: "FitAI",
+    englishTitle: "AI Virtual Fitting & Styling",
+    summary:
+      "내 사진과 원하는 옷으로 착용 모습을 미리 확인하고, 옷장 관리와 AI 상담으로 코디를 탐색하는 Flutter 기반 앱입니다.",
+    description:
+      "FitAI는 전신 사진과 의류 이미지를 활용해 착용 모습을 미리 확인할 수 있는 AI 가상 피팅 앱입니다. 홈, 옷장, 가상 피팅, AI 채팅, 마이페이지로 화면을 구성하고, 옷장에 등록한 아이템을 선택해 피팅하거나 생성 결과를 저장할 수 있도록 구현했습니다. Gemini로 피팅 이미지를 생성하고 인물 유지와 의류 적용 여부를 검증하며, OpenAI API를 활용해 이전 대화를 참고하는 패션 스타일링 상담을 제공합니다.",
+    year: "2026",
+    status: "개발·개선 중",
+    technologies: ["Flutter", "Dart", "TypeScript", "Gemini API", "OpenAI API"],
+    image: "/projects/fitai.png",
+    imageAlt: "FitAI 로고와 AI 가상 피팅 앱의 모바일 화면 목업",
+    imageAspectRatio: 1920 / 1080,
+    contributions: [
+      "Flutter로 주요 화면과 이미지 선택 흐름을 구현하고, 화면을 이동해도 피팅 선택 상태가 유지되도록 관리했습니다.",
+      "전신 사진과 최대 두 개의 의류 이미지를 활용한 가상 피팅을 구현하고, 생성 결과를 검증한 뒤 필요한 경우 다시 생성하도록 구성했습니다.",
+      "Supabase Edge Functions에서 AI API 호출과 비밀 키를 관리하도록 앱과 서버의 역할을 분리했습니다.",
+      "옷장 데이터와 피팅 결과를 기기에 저장하고, 앱을 다시 실행해도 복원할 수 있도록 구현했습니다.",
+      "완료된 질문과 답변을 다음 요청에 전달해 상담 맥락을 유지하고, 실패한 요청을 중복 없이 재시도하도록 구성했습니다.",
+    ],
+    troubleshooting: [
+      {
+        title: "원본 이미지 반환과 선택한 의류 누락",
+        problem:
+          "피팅 이미지 생성 과정에서 원본이 그대로 반환되거나, 선택한 옷이 결과에 반영되지 않는 문제가 있었습니다.",
+        solution:
+          "Base64 비교로 입력과 동일한 이미지인지 확인하고, 별도의 AI 검증으로 인물 유지와 각 의류의 적용 여부를 검사했습니다. 품질 검증에 실패한 경우에만 보정 지시를 반영해 최대 한 번 다시 생성하도록 구성했습니다.",
+        result:
+          "이미지 생성 성공 여부와 피팅 검증 결과를 구분하고, 검증을 통과한 결과만 반환하도록 처리했습니다.",
+      },
+      {
+        title: "두 벌의 의류 선택과 재생성 기준 혼선",
+        problem:
+          "같은 카테고리의 옷을 두 개 선택하거나, 결과 생성 이후 선택 상태가 바뀌면 재생성에 사용할 조합이 혼동될 수 있었습니다.",
+        solution:
+          "서로 다른 카테고리의 옷만 함께 선택하도록 제한하고, 재생성에는 최초 요청 시점의 의류 조합을 사용하도록 입력 상태를 분리했습니다.",
+        result:
+          "의류 선택 규칙과 재생성 기준을 통일해, 다시 생성할 때도 처음 요청한 조합을 유지하도록 했습니다.",
+      },
+      {
+        title: "후속 상담의 맥락 단절과 재시도 질문 중복",
+        problem:
+          "현재 질문만 AI에 전달하면 이전 추천을 참고한 후속 상담이 어려웠고, 실패한 요청을 재시도할 때 같은 질문이 중복되는 문제가 있었습니다.",
+        solution:
+          "정상적으로 완료된 질문·답변 쌍을 다음 요청에 함께 전달했습니다. 응답에 실패한 질문은 전달 이력에서 제외하고, 재시도 시 기존 질문을 중복 추가하지 않도록 구성했습니다.",
+        result:
+          "이전 대화를 참고하는 후속 상담과 질문 중복을 방지하는 재시도 흐름을 구현했습니다.",
+      },
+    ],
+  },
+  {
     slug: "2048-reverse-engineering",
     category: "project",
     title: "2048 Reverse Engineering & Binary Patching",
@@ -20,26 +73,7 @@ export const projects: readonly Project[] = [
     troubleshooting: [],
   },
   {
-    slug: "developer-portfolio",
-    category: "project",
-    title: "Protfolio Blog",
-    englishTitle: "Developer Portfolio",
-    summary:
-      "프로필, 기술 스택, 수상 내역과 프로젝트 경험을 한곳에서 소개하는 반응형 포트폴리오 웹사이트입니다.",
-    description:
-      "Next.js App Router와 TypeScript로 만든 개인 포트폴리오 웹사이트입니다. 첫 화면에서 프로필과 기술 스택, 수상 내역을 소개하고, 프로젝트 페이지에서는 프로젝트와 서브 프로젝트를 나누어 보여줍니다. 각 항목은 기여 내용과 문제 해결 과정을 담은 상세 페이지로 이어지며, 모바일 화면과 시스템 테마 설정도 지원합니다.",
-    year: "2026",
-    status: "개발·개선 중",
-    technologies: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4"],
-    image: "/projects/developer-portfolio-home.png",
-    imageAlt: "포트폴리오 웹사이트의 다크 모드 홈 화면",
-    imageAspectRatio: 2842 / 1712,
-    contributions: [],
-    troubleshooting: [],
-  },
-  {
     slug: "soundmotion",
-    featured: true,
     category: "project",
     title: "Sound Motion",
     englishTitle: "SoundMotion",
@@ -93,6 +127,24 @@ export const projects: readonly Project[] = [
           "데스크톱과 모바일 모두에서 정보의 우선순위가 유지되고, 주요 재생 기능을 편리하게 조작할 수 있게 되었습니다.",
       },
     ],
+  },
+  {
+    slug: "developer-portfolio",
+    category: "project",
+    title: "Protfolio Blog",
+    englishTitle: "Developer Portfolio",
+    summary:
+      "프로필, 기술 스택, 수상 내역과 프로젝트 경험을 한곳에서 소개하는 반응형 포트폴리오 웹사이트입니다.",
+    description:
+      "Next.js App Router와 TypeScript로 만든 개인 포트폴리오 웹사이트입니다. 첫 화면에서 프로필과 기술 스택, 수상 내역을 소개하고, 프로젝트 페이지에서는 프로젝트와 서브 프로젝트를 나누어 보여줍니다. 각 항목은 기여 내용과 문제 해결 과정을 담은 상세 페이지로 이어지며, 모바일 화면과 시스템 테마 설정도 지원합니다.",
+    year: "2026",
+    status: "개발·개선 중",
+    technologies: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4"],
+    image: "/projects/developer-portfolio-home.png",
+    imageAlt: "포트폴리오 웹사이트의 다크 모드 홈 화면",
+    imageAspectRatio: 2842 / 1712,
+    contributions: [],
+    troubleshooting: [],
   },
   {
     slug: "ctf-writeup-manager",

@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Dialog } from "@base-ui/react/dialog";
 import { Expand, X } from "lucide-react";
 import { ExternalLink } from "@/components/ExternalLink";
+import { cn } from "@/lib/utils";
 
 type ProjectScreenshotProps = {
   src: string;
@@ -11,6 +12,7 @@ type ProjectScreenshotProps = {
   caption: string;
   width: number;
   height: number;
+  fullWidth?: boolean;
 };
 
 export function ProjectScreenshot({
@@ -19,21 +21,35 @@ export function ProjectScreenshot({
   caption,
   width,
   height,
+  fullWidth = false,
 }: ProjectScreenshotProps) {
   return (
     <figure className="min-w-0">
       <Dialog.Root>
         <Dialog.Trigger
           aria-label={`${caption} 확대 보기`}
-          className="group relative flex w-full cursor-zoom-in items-center justify-center overflow-hidden rounded-xl border border-zinc-200 bg-zinc-100 outline-none transition-colors hover:border-zinc-400 focus-visible:ring-2 focus-visible:ring-ring dark:border-zinc-800 dark:bg-zinc-900 dark:hover:border-zinc-600"
+          className={cn(
+            "group relative flex w-full cursor-zoom-in items-center justify-center overflow-hidden rounded-xl border border-zinc-200 outline-none transition-colors hover:border-zinc-400 focus-visible:ring-2 focus-visible:ring-ring dark:border-zinc-800 dark:hover:border-zinc-600",
+            fullWidth ? "bg-white" : "bg-zinc-100 dark:bg-zinc-900",
+          )}
+          style={fullWidth ? { aspectRatio: width / height } : undefined}
         >
           <Image
             src={src}
             alt={alt}
-            width={width}
-            height={height}
-            sizes="(min-width: 1024px) 680px, (min-width: 640px) calc(100vw - 80px), calc(100vw - 48px)"
-            className="h-auto max-h-96 w-auto max-w-full object-contain"
+            width={fullWidth ? undefined : width}
+            height={fullWidth ? undefined : height}
+            fill={fullWidth}
+            sizes={
+              fullWidth
+                ? "(min-width: 1280px) 1200px, (min-width: 640px) calc(100vw - 80px), calc(100vw - 48px)"
+                : "(min-width: 1024px) 680px, (min-width: 640px) calc(100vw - 80px), calc(100vw - 48px)"
+            }
+            className={
+              fullWidth
+                ? "object-contain"
+                : "h-auto max-h-96 w-auto max-w-full object-contain"
+            }
           />
           <span className="absolute right-2 bottom-2 flex size-8 items-center justify-center rounded-lg bg-zinc-950/80 text-white">
             <Expand aria-hidden="true" className="size-4" />

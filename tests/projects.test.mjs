@@ -49,11 +49,14 @@ test("sections keep every project exactly once, with featured projects first", (
     [...listedSlugs].sort(),
     projects.map(({ slug }) => slug).sort(),
   );
-  assert.equal(projectSections[0].projects[0].slug, "soundmotion");
+  assert.deepEqual(
+    projectSections[0].projects.map(({ slug }) => slug),
+    ["fitai", "2048-reverse-engineering", "soundmotion", "developer-portfolio"],
+  );
   for (const { projects: items } of projectSections) {
     assert.equal(new Set(items.map(({ category }) => category)).size, 1);
     const featured = items.map(({ featured }) => Boolean(featured));
     assert.deepEqual(featured, [...featured].sort().reverse());
   }
-  assert.equal(projects[0].slug, "2048-reverse-engineering");
+  assert.equal(projects[0].slug, "fitai");
 });

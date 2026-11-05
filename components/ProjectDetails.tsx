@@ -1,5 +1,6 @@
 import type { Project } from "@/lib/projects";
 import { DetailSection } from "@/components/DetailSection";
+import { FitAIOverview } from "@/components/FitAIOverview";
 import { ReverseEngineeringDetails } from "@/components/ReverseEngineeringDetails";
 import { Troubleshooting } from "@/components/Troubleshooting";
 
@@ -9,13 +10,21 @@ export function ProjectDetails({ project }: { project: Project }) {
   }
 
   const { contributions, learnings = [], troubleshooting } = project;
+  const isFitAI = project.slug === "fitai";
 
-  if (!contributions.length && !learnings.length && !troubleshooting.length) {
+  if (
+    !isFitAI &&
+    !contributions.length &&
+    !learnings.length &&
+    !troubleshooting.length
+  ) {
     return null;
   }
 
   return (
     <div className="mt-20 space-y-24">
+      {isFitAI && <FitAIOverview />}
+
       {contributions.length > 0 && (
         <DetailSection
           id="contribution-heading"
