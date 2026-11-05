@@ -2,15 +2,17 @@ import Image from "next/image";
 import type { Technology } from "@/lib/technologies";
 import { cn } from "@/lib/utils";
 
+type TechnologyIconProps = {
+  technology: Technology;
+  size?: number;
+  className?: string;
+};
+
 export function TechnologyIcon({
   technology,
   size = 24,
   className,
-}: {
-  technology: Technology;
-  size?: number;
-  className?: string;
-}) {
+}: TechnologyIconProps) {
   if (technology.icon) {
     return (
       <Image

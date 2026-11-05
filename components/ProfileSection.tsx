@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { CachyOSLogo } from "@/components/CachyOSLogo";
+import { ExternalLink } from "@/components/ExternalLink";
 
 export default function ProfileSection() {
   return (
@@ -28,7 +29,8 @@ export default function ProfileSection() {
             최시훈입니다.
           </h1>
           <p className="mt-4 max-w-3xl leading-7">
-            웹 서비스를 만들고, 리버스 엔지니어링으로 프로그램의 동작 원리를 분석하며 공부하고 있습니다.
+            웹 서비스를 만들고, 리버스 엔지니어링으로 프로그램의 동작 원리를
+            분석하며 공부하고 있습니다.
           </p>
           <div className="mt-10">
             <div className="mt-3 flex items-center gap-2">
@@ -43,10 +45,8 @@ export default function ProfileSection() {
                 경북소프트웨어마이스터고등학교
               </p>
             </div>
-            <a
+            <ExternalLink
               href="https://github.com/siregon72"
-              target="_blank"
-              rel="noreferrer noopener"
               className="group mt-3 inline-flex min-h-10 items-center gap-2 rounded-md text-zinc-500 transition-colors hover:text-zinc-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 dark:text-zinc-400 dark:hover:text-zinc-50 dark:focus-visible:ring-offset-zinc-950"
             >
               <span className="flex size-6 items-center justify-center">
@@ -63,7 +63,7 @@ export default function ProfileSection() {
                 aria-hidden="true"
                 className="size-3.5 opacity-60 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
               />
-            </a>
+            </ExternalLink>
           </div>
         </div>
       </div>

@@ -1,32 +1,11 @@
 import type { Metadata } from "next";
 import { ProjectCard } from "@/components/ProjectCard";
-import { projects } from "@/lib/projects";
+import { projectSections } from "@/lib/projects";
 
 export const metadata: Metadata = {
   title: "Projects",
   description: "최시훈의 프로젝트와 문제 해결 과정을 소개합니다.",
 };
-
-const projectSections = [
-  {
-    id: "main-projects-heading",
-    title: "Projects",
-    label: "프로젝트 목록",
-    projects: projects
-      .filter((project) => project.category === "project")
-      .sort(
-        (first, second) =>
-          Number(second.slug === "soundmotion") -
-          Number(first.slug === "soundmotion"),
-      ),
-  },
-  {
-    id: "sub-projects-heading",
-    title: "Sub Projects",
-    label: "서브 프로젝트 목록",
-    projects: projects.filter((project) => project.category === "subproject"),
-  },
-];
 
 export default function ProjectsPage() {
   return (

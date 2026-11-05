@@ -2,17 +2,19 @@ import Image from "next/image";
 import { ImageIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 
+type ProjectVisualProps = {
+  image: string | null;
+  alt: string;
+  aspectRatio?: number;
+  className?: string;
+};
+
 export function ProjectVisual({
   image,
   alt,
   aspectRatio,
   className,
-}: {
-  image: string | null;
-  alt: string;
-  aspectRatio?: number;
-  className?: string;
-}) {
+}: ProjectVisualProps) {
   return (
     <div
       className={cn(

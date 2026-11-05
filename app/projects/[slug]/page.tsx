@@ -8,6 +8,8 @@ import { TechnologyBadges } from "@/components/TechnologyBadges";
 import { getProject, projects } from "@/lib/projects";
 import { cn } from "@/lib/utils";
 
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return projects.map((project) => ({ slug: project.slug }));
 }
@@ -74,7 +76,10 @@ export default async function ProjectDetailPage({
           <p className="mt-6 max-w-3xl text-lg leading-8 text-zinc-600 dark:text-zinc-400">
             {project.description}
           </p>
-          <TechnologyBadges technologies={project.technologies} className="mt-6" />
+          <TechnologyBadges
+            technologies={project.technologies}
+            className="mt-6"
+          />
         </div>
         <span className="w-fit rounded-full border border-zinc-200 px-4 py-2 text-sm text-zinc-600 sm:justify-self-end dark:border-zinc-800 dark:text-zinc-400">
           {project.status}

@@ -3,6 +3,15 @@
 import Image from "next/image";
 import { Dialog } from "@base-ui/react/dialog";
 import { Expand, X } from "lucide-react";
+import { ExternalLink } from "@/components/ExternalLink";
+
+type ProjectScreenshotProps = {
+  src: string;
+  alt: string;
+  caption: string;
+  width: number;
+  height: number;
+};
 
 export function ProjectScreenshot({
   src,
@@ -10,13 +19,7 @@ export function ProjectScreenshot({
   caption,
   width,
   height,
-}: {
-  src: string;
-  alt: string;
-  caption: string;
-  width: number;
-  height: number;
-}) {
+}: ProjectScreenshotProps) {
   return (
     <figure className="min-w-0">
       <Dialog.Root>
@@ -63,14 +66,12 @@ export function ProjectScreenshot({
                 className="mx-auto h-auto max-h-[calc(100dvh-12rem)] w-auto max-w-full object-contain"
               />
             </div>
-            <a
+            <ExternalLink
               href={src}
-              target="_blank"
-              rel="noreferrer noopener"
               className="shrink-0 border-t border-zinc-200 px-4 py-3 text-center text-sm text-zinc-500 underline underline-offset-4 outline-none hover:text-foreground focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring dark:border-zinc-800 dark:text-zinc-400"
             >
               원본 크기로 보기
-            </a>
+            </ExternalLink>
           </Dialog.Popup>
         </Dialog.Portal>
       </Dialog.Root>

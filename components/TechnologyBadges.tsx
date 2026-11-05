@@ -2,15 +2,20 @@ import { TechnologyIcon } from "@/components/TechnologyIcon";
 import { getTechnology } from "@/lib/technologies";
 import { cn } from "@/lib/utils";
 
+type TechnologyBadgesProps = {
+  technologies: readonly string[];
+  className?: string;
+};
+
 export function TechnologyBadges({
   technologies,
   className,
-}: {
-  technologies: readonly string[];
-  className?: string;
-}) {
+}: TechnologyBadgesProps) {
   return (
-    <ul className={cn("flex flex-wrap gap-2", className)} aria-label="사용 기술">
+    <ul
+      className={cn("flex flex-wrap gap-2", className)}
+      aria-label="사용 기술"
+    >
       {technologies.map((technology) => {
         const badge = getTechnology(technology);
 

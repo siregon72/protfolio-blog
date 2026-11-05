@@ -9,6 +9,7 @@ export function ModeToggle() {
 
   return (
     <Button
+      type="button"
       variant="outline"
       size="icon"
       className="relative"

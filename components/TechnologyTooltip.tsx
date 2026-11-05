@@ -3,7 +3,11 @@
 import type { ReactNode } from "react";
 import { Tooltip } from "@base-ui/react/tooltip";
 
-export function TechnologyTooltipProvider({ children }: { children: ReactNode }) {
+export function TechnologyTooltipProvider({
+  children,
+}: {
+  children: ReactNode;
+}) {
   return <Tooltip.Provider delay={0}>{children}</Tooltip.Provider>;
 }
 

@@ -1,28 +1,10 @@
+import { skillGroups } from "@/lib/data/skills";
 import { TechnologyIcon } from "@/components/TechnologyIcon";
 import {
   TechnologyTooltip,
   TechnologyTooltipProvider,
 } from "@/components/TechnologyTooltip";
 import { getTechnology } from "@/lib/technologies";
-
-const skillGroups = [
-  {
-    id: "analysis-skills",
-    label: "분석",
-    technologies: ["Assembly", "C", "Linux"].map(getTechnology),
-  },
-  {
-    id: "web-skills",
-    label: "웹",
-    technologies: [
-      "React",
-      "JavaScript",
-      "Tailwind CSS",
-      "Cloudflare",
-      "Supabase",
-    ].map(getTechnology),
-  },
-];
 
 export function DevIcon() {
   return (
@@ -44,7 +26,7 @@ export function DevIcon() {
                 {group.label}
               </h3>
               <ul className="flex flex-wrap gap-3" aria-labelledby={group.id}>
-                {group.technologies.map((technology) => (
+                {group.technologies.map(getTechnology).map((technology) => (
                   <li key={technology.name} className="shrink-0">
                     <TechnologyTooltip name={technology.name}>
                       <TechnologyIcon
