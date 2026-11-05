@@ -22,13 +22,12 @@ export default function ProfileSection() {
             안녕하세요,
             <br />
             <span className="inline-block bg-linear-to-r from-zinc-950 to-zinc-950/20 bg-clip-text text-transparent dark:from-white dark:to-white/20">
-              리버스 엔지니어&nbsp;
+              보안 엔지니어&nbsp;
             </span>
             최시훈입니다.
           </h1>
           <p className="mt-4 max-w-3xl leading-7">
-            웹 서비스를 만들고, 리버스 엔지니어링으로 프로그램의 동작 원리를
-            분석하며 공부하고 있습니다.
+            웹 서비스를 만들고, 리눅스와 네트워크 보안을 공부하고 있습니다.
           </p>
           <div className="mt-10">
             <div className="mt-3 flex items-center gap-2">
